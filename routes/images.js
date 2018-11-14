@@ -1,26 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 const router = express.Router();
+const upload = multer({ dest: 'public/images/' });
 
 const Image = mongoose.model('Image');
 
 /* GET image. */
-router.get('/:id', (req, res) => {
+router.get('/:id', upload.single('file'), (req, res) => {
   res.send('respond with a resource');
 });
 
 /* Create new image */
-router.post('/', async (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
   try {
     const image = new Image({
       ...req.body,
-      url: 'magic',
+      url: req.file.path,
     });
     await image.save();
     return res.send();
   } catch (err) {
-    return res.send(500);
+    // console.log(err);
+    return res.sendStatus(500);
   }
 });
 

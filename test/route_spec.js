@@ -2,20 +2,25 @@ const request = require('supertest');
 const mongoose = require('mongoose');
 const chai = require('chai');
 const server = require('../bin/www');
-let imageMock = require('./mock/image');
+const imageMock = require('./mock/image');
 
 const { expect } = chai;
-imageMock = { ...imageMock };
-delete imageMock.url;
 
 const Image = mongoose.model('Image');
 
 describe('Image', () => {
+  afterEach(async () => {
+    await Image.deleteMany({});
+  });
+
   describe('POST /images', () => {
     it('should return status 200', async () => {
       const res = await request(server)
         .post('/images')
-        .send(imageMock);
+        .field('owner', imageMock.owner)
+        .field('description', imageMock.description)
+        .field('metadata', imageMock.metadata)
+        .attach('file', 'test/mock/pic.png');
 
       expect(res.statusCode).to.equal(200);
     });
@@ -23,10 +28,26 @@ describe('Image', () => {
     it('should save basic information', async () => {
       await request(server)
         .post('/images')
-        .send(imageMock);
+        .field('owner', imageMock.owner)
+        .field('description', imageMock.description)
+        .field('metadata', imageMock.metadata)
+        .attach('file', 'test/mock/pic.png');
 
       const img = await Image.findOne({ owner: imageMock.owner });
       expect(img.description).to.equal(imageMock.description);
+    });
+
+    it('should accept a file and save an url', async function save() {
+      this.timeout(0);
+      await request(server)
+        .post('/images')
+        .field('owner', imageMock.owner)
+        .field('description', imageMock.description)
+        .field('metadata', imageMock.metadata)
+        .attach('file', 'test/mock/pic.png');
+
+      const img = await Image.findOne({ owner: imageMock.owner });
+      expect(img.url.includes('public/image')).to.equal(true);
     });
   });
 });
