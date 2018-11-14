@@ -2,17 +2,11 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const chai = require('chai');
 
+const imageMock = require('./mock/image');
 require('../config/db');
 
 const { expect } = chai;
 const Image = mongoose.model('Image');
-
-const imageMock = {
-  url: 'http://imgurl.com',
-  owner: 'iago',
-  description: 'pretty avatar picture',
-  metadata: 'who know whats in here',
-};
 
 describe('Image model', () => {
   beforeEach(async () => {
