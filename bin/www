@@ -6,12 +6,10 @@
 
 const app = require('../app');
 const http = require( 'http');
-const mongoose = require('mongoose');
 const debug = require('debug')('myapp:server');
-const fs = require('fs');
 
 
-require('dotenv').config()
+require('dotenv').config();
 /**
  * Get port from environment and store in Express.
  */
@@ -32,26 +30,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Connect to mongoose
- */
-
-const connect = function () {
-  const options = { useNewUrlParser: true };
-  mongoose.connect(process.env.DB, options);
-};
-connect();
-
-/**
- * Bootstrap models
- */
-fs.readdirSync(__dirname + '/../app/models').forEach(function (file) {
-  if (~file.indexOf('.js')) require(__dirname + '/../app/models/' + file);
-});
-
-
-mongoose.connection.on('error', console.log);
-mongoose.connection.on('disconnected', connect);
+require('../config/db');
 
 /**
  * Normalize a port into a number, string, or false.
