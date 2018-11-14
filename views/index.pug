@@ -3,3 +3,15 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  form
+    label Owner:
+    input(name='owner')
+    label Description:
+    input(name='description')
+
+  h2 Uploaded Images
+  ul
+    each val in [1,2,3]
+      li
+        a(href= val)= val
