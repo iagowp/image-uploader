@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "describe": true,
+    "it": true,
+    "expect": true,
+    "beforeEach": true,
+    "before": true,
+    "after": true,
+    "afterEach": true,
+    "xit": true
+  },
+  "rules": {
+    "global-require": 0,
+    "import/no-dynamic-require": 0,
+    "no-console": 0
+  }
+}

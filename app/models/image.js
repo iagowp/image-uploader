@@ -2,18 +2,19 @@
  * Module dependencies
  */
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var Image = new Schema({
+const { Schema } = mongoose;
+
+const Image = new Schema({
   url: { type: String, required: true },
   owner: { type: String, required: true },
-  description: { type : String, required: true },
-  metadata: { type: String, required: true }
+  description: { type: String, required: true },
+  metadata: { type: String, required: true },
 });
 
 
- /**
+/**
  * Register
  */
 

@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
+const debug = require('debug')('myapp:server');
 
 const app = require('../app');
-const http = require( 'http');
-const debug = require('debug')('myapp:server');
+const http = require('http');
 
 
 require('dotenv').config();
