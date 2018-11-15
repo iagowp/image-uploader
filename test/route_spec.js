@@ -29,7 +29,7 @@ describe('Image', () => {
   });
 
   describe('POST /images', () => {
-    it('should return status 200', async () => {
+    it('should return status 302 (redirect)', async () => {
       const res = await request(server)
         .post('/images')
         .field('owner', imageMock.owner)
@@ -37,7 +37,7 @@ describe('Image', () => {
         .field('metadata', imageMock.metadata)
         .attach('file', 'test/mock/pic.png');
 
-      expect(res.statusCode).to.equal(200);
+      expect(res.statusCode).to.equal(302);
     });
 
     it('should save basic information', async () => {

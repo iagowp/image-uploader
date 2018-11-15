@@ -24,7 +24,7 @@ router.post('/', upload.single('file'), async (req, res) => {
       metadata: req.body.metadata || 'i made this up',
     });
     await image.save();
-    return res.send();
+    return res.redirect(`/images/${image.id}`);
   } catch (err) {
     // console.log(err);
     return res.sendStatus(500);
