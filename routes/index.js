@@ -7,7 +7,7 @@ const Image = mongoose.model('Image');
 /* GET home page. */
 router.get('/', async (req, res) => {
   const images = await Image.find();
-  res.render('index', { title: 'Express', images });
+  res.render('index', { images });
 });
 
 module.exports = router;
