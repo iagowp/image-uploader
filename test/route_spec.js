@@ -1,6 +1,8 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 const chai = require('chai');
+const fs = require('fs');
+const path = require('path');
 const server = require('../bin/www');
 const imageMock = require('./mock/image');
 
@@ -11,6 +13,19 @@ const Image = mongoose.model('Image');
 describe('Image', () => {
   afterEach(async () => {
     await Image.deleteMany({});
+  });
+
+  after(() => {
+    const directory = 'public/images/test';
+    fs.readdir(directory, (err, files) => {
+      if (err) throw err;
+
+      files.forEach((file) => {
+        fs.unlink(path.join(directory, file), (err2) => {
+          if (err2) throw err2;
+        });
+      });
+    });
   });
 
   describe('POST /images', () => {

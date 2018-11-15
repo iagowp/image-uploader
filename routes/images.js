@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 
 const router = express.Router();
-const upload = multer({ dest: 'public/images/' });
+const dest = process.env.NODE_ENV === 'test' ? 'public/images/test' : 'public/images/';
+const upload = multer({ dest });
 
 const Image = mongoose.model('Image');
 
