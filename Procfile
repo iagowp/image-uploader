@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/forever -m 5 bin/www
+web: pm2-runtime start ecosystem.config.js --env production
