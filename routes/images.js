@@ -9,8 +9,10 @@ const upload = multer({ dest });
 const Image = mongoose.model('Image');
 
 /* GET image. */
-router.get('/:id', upload.single('file'), (req, res) => {
-  res.send('respond with a resource');
+router.get('/:id', async (req, res) => {
+  const image = await Image.findOne({ _id: req.params.id });
+  if (!image) return res.sendStatus(404);
+  return res.render('single', { image });
 });
 
 /* Create new image */
@@ -18,7 +20,8 @@ router.post('/', upload.single('file'), async (req, res) => {
   try {
     const image = new Image({
       ...req.body,
-      url: req.file.path,
+      url: req.file.filename,
+      metadata: req.body.metadata || 'i made this up',
     });
     await image.save();
     return res.send();
