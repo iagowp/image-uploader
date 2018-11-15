@@ -11,3 +11,16 @@ a {
   max-width: 60%;
   max-height: 60%;
 }
+
+
+#home {
+  display: flex;
+  justify-content: space-around;
+}
+
+#home form {
+  width: 40%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+}

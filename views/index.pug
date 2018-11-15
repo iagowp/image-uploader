@@ -4,17 +4,20 @@ block content
   h1= title
   p Welcome to #{title}
 
-  form(action='/images' method='POST' enctype="multipart/form-data")
-    label Owner:
-    input(name='owner')
-    label Description:
-    input(name='description')
-    label Image
-    input(name='file' type='file')
-    input(type='submit' value='Send')
+  #home
+    form(action='/images' method='POST' enctype="multipart/form-data")
+      h2 Upload new image
+      label Owner:
+      input(name='owner')
+      label Description:
+      input(name='description')
+      label Image
+      input(name='file' type='file')
+      input(type='submit' value='Send')
 
-  h2 Uploaded Images
-  ul
-    each val in images
-      li
-        a(href=`/images/${val.id}`) #{val.owner}`s image uploaded at #{val.displayDate}
+    div
+      h2 Uploaded Images
+      ul
+        each val in images
+          li
+            a(href=`/images/${val.id}`) #{val.owner}`s image uploaded at #{val.displayDate}
