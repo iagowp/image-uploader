@@ -43,8 +43,14 @@ describe('Image model', () => {
   });
 
   it('should have display date', async () => {
-    const image = await Image.findOne({ metadata: imageMock.metadata });
+    const image = await Image.findOne({ owner: imageMock.owner });
     expect(image).to.have.property('displayDate');
     expect(image.displayDate).to.be.a('string');
+  });
+
+  it('should have display url', async () => {
+    const image = await Image.findOne({ url: imageMock.url });
+    expect(image).to.have.property('displayUrl');
+    expect(image.displayUrl).to.be.a('string');
   });
 });

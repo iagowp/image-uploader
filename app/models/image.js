@@ -16,7 +16,11 @@ const ImageSchema = new Schema({
 });
 
 ImageSchema.virtual('displayDate').get(function getDisplayDate() {
-  return moment(this.createdAt);
+  return moment(this.createdAt).format();
+});
+
+ImageSchema.virtual('displayUrl').get(function getDisplayUrl() {
+  return `/images/${this.url}`;
 });
 
 

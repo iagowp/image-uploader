@@ -62,7 +62,7 @@ describe('Image', () => {
         .attach('file', 'test/mock/pic.png');
 
       const img = await Image.findOne({ owner: imageMock.owner });
-      expect(img.url.includes('public/image')).to.equal(true);
+      expect(img.displayUrl.includes('images/')).to.equal(true);
     });
   });
 });
