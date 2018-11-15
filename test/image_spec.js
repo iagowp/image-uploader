@@ -41,4 +41,10 @@ describe('Image model', () => {
     expect(image).to.have.property('metadata');
     expect(image.metadata).to.be.a('string');
   });
+
+  it('should have display date', async () => {
+    const image = await Image.findOne({ metadata: imageMock.metadata });
+    expect(image).to.have.property('displayDate');
+    expect(image.displayDate).to.be.a('string');
+  });
 });

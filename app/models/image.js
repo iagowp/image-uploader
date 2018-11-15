@@ -1,16 +1,22 @@
 /*!
  * Module dependencies
  */
+const moment = require('moment');
 
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const Image = new Schema({
+const ImageSchema = new Schema({
   url: { type: String, required: true },
   owner: { type: String, required: true },
   description: { type: String, required: true },
   metadata: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+});
+
+ImageSchema.virtual('displayDate').get(function getDisplayDate() {
+  return moment(this.createdAt);
 });
 
 
@@ -18,4 +24,4 @@ const Image = new Schema({
  * Register
  */
 
-mongoose.model('Image', Image);
+mongoose.model('Image', ImageSchema);
