@@ -11,7 +11,7 @@ const ImageSchema = new Schema({
   url: { type: String, required: true },
   owner: { type: String, required: true },
   description: { type: String, required: true },
-  metadata: { type: String, required: true },
+  metadata: { type: Object, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 

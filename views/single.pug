@@ -5,4 +5,8 @@ block content
     h3 Picture by #{image.owner} uploaded at #{image.displayDate}
     img(src= image.displayUrl)
     p= image.description
-    p= image.metadata
+    h4 Metadata:
+    ul
+    each val, key in image.metadata
+      li #{key}:
+        strong= val

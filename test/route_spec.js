@@ -34,7 +34,6 @@ describe('Image', () => {
         .post('/images')
         .field('owner', imageMock.owner)
         .field('description', imageMock.description)
-        .field('metadata', imageMock.metadata)
         .attach('file', 'test/mock/pic.png');
 
       expect(res.statusCode).to.equal(302);
@@ -45,7 +44,6 @@ describe('Image', () => {
         .post('/images')
         .field('owner', imageMock.owner)
         .field('description', imageMock.description)
-        .field('metadata', imageMock.metadata)
         .attach('file', 'test/mock/pic.png');
 
       const img = await Image.findOne({ owner: imageMock.owner });
@@ -58,7 +56,6 @@ describe('Image', () => {
         .post('/images')
         .field('owner', imageMock.owner)
         .field('description', imageMock.description)
-        .field('metadata', imageMock.metadata)
         .attach('file', 'test/mock/pic.png');
 
       const img = await Image.findOne({ owner: imageMock.owner });

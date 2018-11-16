@@ -39,7 +39,7 @@ describe('Image model', () => {
   it('should have metadata', async () => {
     const image = await Image.findOne({ metadata: imageMock.metadata });
     expect(image).to.have.property('metadata');
-    expect(image.metadata).to.be.a('string');
+    expect(image.metadata).to.be.an('object');
   });
 
   it('should have display date', async () => {
