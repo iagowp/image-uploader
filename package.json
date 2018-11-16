@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/nodemon ./bin/www",
-    "test": "NODE_ENV=test PORT=5000 ./node_modules/.bin/mocha test/*_spec.js"
+    "start": "npx nodemon ./bin/www",
+    "test": "NODE_ENV=test PORT=5000 npx mocha test/*_spec.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
